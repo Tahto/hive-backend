@@ -22,7 +22,7 @@ class HourHourDayController extends Controller
         $dt_data =  $request->dt_data ? $request->dt_data : date('Y-m-d');
         $manager = $request->manager;
         $sectors_id = $request->sectors_id ? explode(',', $request->sectors_id) : ['_%'];
-        $order_by = $request->order_by ? $request->order_by : 'nu_setor';
+        $order_by = $request->order_by ? $request->order_by : 'null';
         $order_by = $order_by == 'null' ? ['nu_setor', 'asc'] :  explode(',',$order_by);
 
         // return $request->all();

@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $hora = '07:18';
+        $hora = '08:10';
     
         $schedule->command('users:update')->dailyAt(date("H:i",strtotime($hora." + 1 minutes")));
         $schedule->command('sectorsn1:update')->dailyAt(date("H:i",strtotime($hora." + 5 minutes")));
@@ -30,13 +30,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('managers:update')->dailyAt(date("H:i",strtotime($hora." + 5 minutes")));
         $schedule->command('sectorsn1manager:update')->dailyAt(date("H:i",strtotime($hora." + 5 minutes")));
         $schedule->command('sectorsn2manager:update')->dailyAt(date("H:i",strtotime($hora." + 5 minutes")));
-        $schedule->command('sectorsn2manager:update')->dailyAt(date("H:i",strtotime($hora." + 5 minutes")));
         $schedule->command('gip:daily')->dailyAt(date("H:i",strtotime($hora." + 1 minutes")));
 
         $schedule->command('calendar')->daily();
-        // $schedule->command('time:range')->everyMinute();
-        $schedule->command('time:range')->everyTenMinutes();
-        $schedule->command('boletimhh:filters')->everyThreeHours();
+        // $schedule->command('time:range')->everyTenMinutes();
+        // $schedule->command('boletimhh:filters')->everyThreeHours();
 
         
         // // reinicia a fila a cada 5 minutos para manter a fila sempre ativa
@@ -47,6 +45,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('queue:work --daemon')
         //     ->everyMinute()
         //     ->withoutOverlapping();
+
+        // php artisan schedule:work
+        // php artisan queue:work
     }
 
     /**

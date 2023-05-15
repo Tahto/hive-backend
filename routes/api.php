@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth:sanctum','log']], function () {
     Route::apiResource('userAvatar', 'App\Http\Controllers\Sys\UserAvatarController');    
 
     Route::apiResource('capacityCharges', 'App\Http\Controllers\Modules\Wit\Planning\CapacityChargeController');
+    Route::apiResource('terms', 'App\Http\Controllers\Modules\RV\TermsController');
     
     // Módulo Reports
     Route::apiResource('powerBi', 'App\Http\Controllers\Modules\Reports\PowerBi\PowerBiController');

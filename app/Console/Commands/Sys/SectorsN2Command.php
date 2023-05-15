@@ -40,7 +40,7 @@ class SectorsN2Command extends Command
             foreach ($dados as $value) {
                 $obj = GipSectorN2::find($value['id']) ? GipSectorN2::find($value['id']) : new GipSectorN2($value);
 
-                $obj['name'] = mb_convert_case($value['name'], MB_CASE_TITLE, 'UTF-8');
+                $obj['name'] = ucfirstException($value['name']);
                 $obj['uf'] = $value['uf'];
                 $obj['sector_n2_id'] = $value['sector_n2_id'];
 

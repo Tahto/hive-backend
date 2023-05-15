@@ -68,10 +68,10 @@ class GipDailyCommand extends Command
             $objTemp['ref'] = $ref;
             $objTemp['date'] = $date;
             $objTemp['id'] = 'bc' . $value['id'];
-            $objTemp['name'] = mb_convert_case($value['name'], MB_CASE_TITLE, 'UTF-8');
+            $objTemp['name'] = ucfirstException($value['name']);
             $objTemp['uf'] = $value['uf'];
-            $objTemp['position'] = mb_convert_case($value['position'], MB_CASE_TITLE, 'UTF-8');
-            $objTemp['position_summary'] = mb_convert_case($value['position_summary'], MB_CASE_TITLE, 'UTF-8');
+            $objTemp['position'] = ucfirstException($value['position']);
+            $objTemp['position_summary'] = ucfirstException($value['position_summary']);
             $objTemp['sector_n1_id'] = $value['sector_n1_id'];
             $objTemp['sector_n2_id'] = $value['sector_n2_id'] == 0 ? null : $value['sector_n2_id'];
             $objTemp['manager_n1_id'] = 'bc' . $value['manager_n1_id'];
@@ -88,8 +88,8 @@ class GipDailyCommand extends Command
             $objTemp['hierarchical_level'] = $value['id'] == $objTemp['manager_n5_id'] ? 5 : $objTemp['hierarchical_level'];
             $objTemp['hierarchical_level'] = $value['id'] == $objTemp['manager_n6_id'] ? 6 : $objTemp['hierarchical_level'];
             $objTemp['status'] = $value['dt_resc'] && str_contains($value['status_gip'], 'RESC')  ? 0 : 1;
-            $objTemp['status_gip'] = mb_convert_case($value['status_gip'], MB_CASE_TITLE, 'UTF-8');
-            $objTemp['status_op'] = mb_convert_case($value['st_op'], MB_CASE_TITLE, 'UTF-8');
+            $objTemp['status_gip'] = ucfirstException($value['status_gip']);
+            $objTemp['status_op'] = ucfirstException($value['st_op']);
             $objTemp['rescind'] = $value['dt_resc'] ?  $value['dt_resc'] : null;
             $objTemp['admission'] = $value['dt_adm'] ?  $value['dt_adm'] : null;
 

@@ -68,10 +68,10 @@ class UsersCommand extends Command
 
                 $obj = User::find($value['id']) ? User::find($value['id']) : new User($value);
 
-                $obj['name'] = mb_convert_case($value['name'], MB_CASE_TITLE, 'UTF-8');
+                $obj['name'] = ucfirstException($value['name']);
                 $obj['uf'] = $value['uf'];
-                $obj['position'] = mb_convert_case($value['position'], MB_CASE_TITLE, 'UTF-8');
-                $obj['position_summary'] = mb_convert_case($value['position_summary'], MB_CASE_TITLE, 'UTF-8');
+                $obj['position'] = ucfirstException($value['position']);
+                $obj['position_summary'] = ucfirstException($value['position_summary']);
                 $obj['sector_n1_id'] = $value['sector_n1_id'];
                 $obj['sector_n2_id'] = $value['sector_n2_id'] == 0 ? null : $value['sector_n2_id'];
                 $obj['manager_n1_id'] = $value['manager_n1_id'];
@@ -80,7 +80,7 @@ class UsersCommand extends Command
                 $obj['manager_n4_id'] = $value['manager_n4_id'];
                 $obj['manager_n5_id'] = $value['manager_n5_id'];
                 $obj['manager_n6_id'] = $value['manager_n6_id'];
-                $obj['status_real'] = mb_convert_case($value['status_real'], MB_CASE_TITLE, 'UTF-8');
+                $obj['status_real'] = ucfirstException($value['status_real']);
                 $obj['hierarchical_level'] = 0;
                 $obj['hierarchical_level'] = $value['id'] == $obj['manager_n1_id'] ? 1 : $obj['hierarchical_level'];
                 $obj['hierarchical_level'] = $value['id'] == $obj['manager_n2_id'] ? 2 : $obj['hierarchical_level'];
@@ -89,7 +89,7 @@ class UsersCommand extends Command
                 $obj['hierarchical_level'] = $value['id'] == $obj['manager_n5_id'] ? 5 : $obj['hierarchical_level'];
                 $obj['hierarchical_level'] = $value['id'] == $obj['manager_n6_id'] ? 6 : $obj['hierarchical_level'];
                 $obj['type'] =  'bc';
-                $objTemp['status'] = $value['dt_resc'] && str_contains( $value['status_gip'] , 'RESC' )  ? 0 : 1;
+                $obj['status'] = $value['dt_resc'] && str_contains( $value['status_real'] , 'RESC' )  ? 0 : 1;
                 $obj['email'] = $value['id'] . '@oicorp.mail.onmicrosoft.com';
                 $obj['password'] = $hash;
                 // print_r(  $obj);
@@ -97,9 +97,9 @@ class UsersCommand extends Command
             }
         } catch (\Throwable $th) {
 
-            return Command::FAILURE;
+            return 'Command::FAILURE';
         }
 
-        return Command::SUCCESS;
+        return 'Command::SUCCESS';
     }
 }
